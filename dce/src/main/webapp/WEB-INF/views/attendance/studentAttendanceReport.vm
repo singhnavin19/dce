@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="$baeUrl/resources/css/dceStyle.css"/>
+<form type="post">
+<table id="DceAlternatetableID">
+	<tr>
+	    <td>Enter Your ID</td>
+	    <td><input type="text" name="uid"></td>
+	    <td><button style="display:none" type="submit" formaction="studentAttendanceReport">Report</td>
+	</tr>
+</table >
+
+#if($studentAttendanceReport!=$nill && $studentAttendanceReport.size()>=1)
+	<table id="DceAlternatetableID">
+	<caption><b>Total:-</b> $studentAttendanceReport.size()</caption>
+	<thead>
+	 <th>Uid</th>
+	 <th>Full Name</th>
+	 <th>Course</th>
+	 <th>Attendance Date</th>
+	 <th>Check-In DateTime</th>
+	 <th>Check-Out DateTime</th>
+	<thead>
+	#foreach($studentAttendance in $studentAttendanceReport)
+	<tr>
+	   <td>$studentAttendance.getUid()</td>
+	   <td>$studentAttendance.getFullName()</td>
+	   <td>$studentAttendance.getCourse()</td>
+	   <td>$!dateUtils.dateToString($studentAttendance.getAttendece_date())</td>
+	   <td>$!dateUtils.dateToString($studentAttendance.getCheck_in_datetime(),'dd/MM/YYYY hh:mm a')</td>
+	   <td>$!dateUtils.dateToString($studentAttendance.getCheck_out_datetime(),'dd/MM/YYYY hh:mm a')</td>
+	  </tr> 
+	#end
+	 </table> 
+#end
+
+</table>
+
+</form>

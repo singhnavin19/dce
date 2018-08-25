@@ -1,0 +1,18 @@
+<html>
+<head>
+<link rel="icon" href="resources/css/images/LOGO.png">
+<link rel="stylesheet" src="resources/css/dmnceStyle.css"/>
+<title>Dynamic Computer Education</title>  
+</head>
+<body>
+  <div>
+     #parse("header.vm")
+  </div>
+  <div>
+    $screen_content
+  </div>
+  <div style="background: #E0E0E0; text-align: center; padding: 5px; margin-top: 10px;">
+      #parse("footer.vm")
+  </div>  
+</body>
+</html>

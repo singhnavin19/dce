@@ -1,0 +1,72 @@
+<link rel="stylesheet" href="$!baeUrl/resources/css/dceStyle.css"/>
+#macro(studentFrom $formType,$formMessage)
+<form action=$formType method="post">
+<table >
+				<br>
+				<th style="color:green">$!formMessage</th><br>
+						<tr>
+							<td>Name : </td>
+							<td><input type="text" name="fname" value="$!studentenquiry.fname" placeholder="First NAME" maxlength="25"></td>
+							<td><input type="text" name="mname" value="$!studentenquiry.mname" placeholder="Middle NAME" maxlength="25"></td>
+							<td><input type="text" name="lname" value="$!studentenquiry.lname" placeholder="Last NAME" maxlength="25"></td>
+						</tr>
+						<tr>
+							<td>Gender : </td>
+							<td><input type="radio" name="gender" #if ($!studentenquiry.gender=='M') checked #end value="M">Male
+								<input type="radio" name="gender" #if ($!studentenquiry.gender=='F') checked #end value="F">Female </td>
+						</tr>
+						<tr>
+							<td>Qualification : </td>
+							<td><input type="text" name="qualification" value="$!studentenquiry.qualification" maxlength="25"></td>
+						</tr>
+						<tr>
+							<td>Profession : </td>
+							<td><select name="Profession">
+							  <option value="0"></option>
+							  <option  #if ($!studentenquiry.profession==1) selected #end value="1">Student</option>
+							  <option  #if ($!studentenquiry.profession==2) selected #end value="2">Buisness</option>
+							  <option  #if ($!studentenquiry.profession==3) selected #end value="3">Service</option>
+							   <option #if ($!studentenquiry.profession==4) selected #end value="4">Other</option>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td>Address : </td>
+							<td><textarea name="address" value="$!studentenquiry.address" height="100%" width="100%" maxlength="1000">$!studentenquiry.address</textarea>
+						</tr>
+						<tr>
+							<td>Mobile No : </td>
+							<td><input type="text" name="mobileNo" value="$!studentenquiry.mobileNo" maxlength="10"></td>
+						</tr>
+						<tr>
+							<td>E-mail ID :</td>
+							<td><input type="email" name="emailID" value="$!studentenquiry.emailID" maxlength="35"></td>
+						</tr>
+						#if(!$!admission)
+						<tr>
+							<td>Course :</td>
+							<td><input type="text" name="course" value="$!studentenquiry.course" maxlength="45"></td>
+						</tr>
+						<tr>
+						
+						   <td><hr>For Office Use Only</td>
+						</tr>
+						<tr>
+							<td>Fees :</td>
+							<td><input type="text" name="fess" value="$!studentenquiry.fess" maxlength="25"></td>
+						</tr>
+						<tr>
+			                <td></br></br></td>
+			             </tr>   
+						#else
+						##parse("studentCourse.vm")
+						##parse("studentReceipt.vm")
+						#end
+						<tr>
+							<td><input align="center" type="submit" name="save" value="save"></td>
+						</tr>
+
+						
+</table>			    
+</form>
+#end

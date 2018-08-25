@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<br>
+<H3 style="color:green;align-content:center">Receipts Details</H3>
+<br>
+<form action="saveStudentReceipts" method="post" name="course">
+
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+		<thead style="padding-top: 12px;padding-bottom: 12px;text-align: left;background-color: #4CAF50;color: white;">
+				<th>Installment No</th>
+				<th>Due_date</th>
+				<th>Paid_date</th>
+				<th>Amount</th>
+				<th>Receipt_No</th>
+		</thead>
+		#set($srno = 1)
+		#set($courseIndex = 0)
+		#set($maxCourseCount=$studentReceiptForm.getStudentReceiptForm().size())
+		#foreach($StudentReceipt in $studentReceiptForm.getStudentReceiptForm())
+		<tbody>
+		   <tr>
+			   <td><input type="readonly" name="studentReceiptForm[$courseIndex].installment" value="$srno"></td>
+			   <td><input type="text" name="studentReceiptForm[$courseIndex].dueDate" value="$!dateUtils.dateToString($!StudentReceipt.dueDate)"></td>
+			   <td><input type="text" name="studentReceiptForm[$courseIndex].paidDate" value="$!dateUtils.dateToString($!StudentReceipt.paidDate)"></td>
+			   <td><input type="text" name="studentReceiptForm[$courseIndex].amount" value="$!StudentReceipt.amount"></td>
+			   <td><input type="text" name="studentReceiptForm[$courseIndex].receiptNo" value="$!StudentReceipt.receiptNo"></td>
+		   	   <td style="display:none"><input type="hidden" name="studentReceiptForm[$courseIndex].uid" value="$!uid"></td>
+		   	   #if($maxCourseCount <=$srno)<td><a href="#"><button type="submit" formaction="addBlankRowStudentReceipts"><i style="font-size:24px" class="fa">&#xf055;</i></a></td>
+		   	   ##else<td><a href="#"><button type="submit" formaction="addBlankRowStudentCourse.mvc"><i style="font-size:24px" class="fa">&#xf056;</i></a></td>
+		   	   #end
+		   	  
+			</tr>
+		</tbody>
+		#set($srno = $srno+1)
+		#set ($courseIndex=$courseIndex+1)
+		#end
+</table>
+<input type="submit" value="save">
+</form>

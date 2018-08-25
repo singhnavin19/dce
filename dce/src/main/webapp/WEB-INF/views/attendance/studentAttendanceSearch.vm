@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="$baeUrl/resources/css/dceStyle.css"/>
+#if($!studentAttendanceReport.check_in_datetime==$null)
+		    #set($disableCheck_out="disabled")
+#end
+#if($!studentAttendanceReport.check_out_datetime!=$null)
+		    #set($disableCheck_out="disabled")
+#end
+#if($!studentAttendanceReport.check_in_datetime!=$null)
+		    #set($disableCheck_in="disabled")
+#end
+<style>
+
+body{
+	background-color:#f2f2f240;
+}
+table{
+	width:100%;
+}
+#input{
+	background-color:#0b648f;
+	color:white;
+	line-height:40px;
+}
+td {
+	height: 50px;
+	padding: 10px 10px 10px 10px;
+}
+</style>
+<form action="status" method="POST">
+	<table id="input">
+	     <tr>
+	       <td style="display:none"><input type="hidden" name="fullName" value="$!studentAttendanceReport.fullName"></td>
+	       <td style="display:none"><input type="hidden" name="course" value="$!studentAttendanceReport.course"></td>
+	       <td style="display:none"><input type="hidden" name="attendece_date" value="$!dateUtils.dateToString($!studentAttendanceReport.attendece_date)"></td>
+	       <td style="display:none"><input type="hidden" name="check_in_datetime" value="$!dateUtils.dateToString($!studentAttendanceReport.check_in_datetime,'dd/MM/YYYY hh:mm a')"></td>
+	       <td style="display:none"><input type="hidden" name="check_out_datetime" value="$!dateUtils.dateToString($!studentAttendanceReport.check_out_datetime,'dd/MM/YYYY hh:mm a')"></td>
+	    </tr>
+	    <tr>
+			<td>Enter your ID:</td>
+			<td><input style="width: 26%;height: 30px;"type="text" name="uid" value="$!studentAttendanceReport.uid"></td>
+		</tr>
+		<tr>
+			<td style="display:none"><input type="submit" name="save" value="search"></td>
+		</tr>
+	</table>
+ 
+       <h2><p style="color:red">$!studentAttendanceReport.message</p></h2>
+	   <h2><p style="color:green">$!message</p></h2>
+	  </tr>   
+		
+#if($status)
+     <table id="DceAlternatetableID">
+    	<tr>
+		    <td>Full Name</td>
+		   <td>$!studentAttendanceReport.fullName</td>
+		 </tr>  
+		 <tr>
+		   <td>Course</td>
+		   <td>$!studentAttendanceReport.course </td>
+		  </tr> 
+		  <tr>
+		     <td><button type="submit" $!disableCheck_in name="check_in_datetime" formaction="markAttendance.mvc">Check-in</td>
+			 <td>$!dateUtils.dateToString($!studentAttendanceReport.check_in_datetime,"dd/MM/YYYY hh:mm a")</td>
+		  </tr>
+		  <tr>
+		     <td><button type="submit" $!disableCheck_out name="check_out_datetime"  formaction="markAttendance.mvc">Check-out</td>
+			 <td>$!dateUtils.dateToString($!studentAttendanceReport.check_out_datetime,"dd/MM/YYYY hh:mm a")</td>
+		  </tr>
+	  </table>
+#end		   
+</form
+
+
+
