@@ -3,11 +3,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  </head>
 <body>
-<img style="width:100%" src="$!baeUrl/resources/css/images/DCE.jpg">
 <div class="navbar">
   <a #if($!home)  class="Active" #end href="#">Home</a>
   <a #if($!enquiry) class="Active" #end href="/dce/enquiry/show">Enquiry</a>
   <a #if($!admission) class="Active" #end  href="/dce/admission/show">Admission</a>
+  <a #if($!information) class="Active" #end  href="/dce/infromation/show">Information</a>
+  
   <div class="dropdown">
     <button class="dropbtn" #if($!attendance) style="background-color:#0b648f"  #end>Attendance 
       <i class="fa fa-caret-down"></i>

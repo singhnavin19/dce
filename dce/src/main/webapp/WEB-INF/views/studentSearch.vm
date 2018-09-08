@@ -6,18 +6,15 @@
 			<td style="display:none"><input type="hidden" name="fname"  value="dceForm"></td>
 			<td style="display:none"><input type="submit" name="save" value="search" ></td>
 		</tr>
-		</br>
 	<table>
 
 </form>
-
-<table>
+<table style="margin-top:0px">
 #foreach($students in $listStudents)
 <tr>
 	<td><a href="searchStudentByTempID?tempID=$!students.tempID">$!students.fname $!students.mname $!students.lname</a></td> 
 	<td>($!students.mobileNo)</td>
 </tr>	 
-</br>
 #end
 </table>
 </br>

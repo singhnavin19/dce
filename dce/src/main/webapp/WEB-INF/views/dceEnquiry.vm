@@ -4,7 +4,5 @@
    <h3 style="color:green">$!message</h3>
    #studentFrom("saveEnquiry","ENQUIRY FORM")
 #else
-   
    #studentFrom("saveStudentDetails","Admission FORM")
-
 #end

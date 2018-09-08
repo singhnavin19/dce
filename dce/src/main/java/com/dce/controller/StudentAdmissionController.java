@@ -63,7 +63,7 @@ public class StudentAdmissionController extends BaseController {
 
 	@RequestMapping("saveStudentCourse")
 	public ModelAndView studentCourse(@ModelAttribute StudentCourseForm studentCourseForm) {
-		ModelAndView result = new ModelAndView("studentReceipt");
+		ModelAndView result = this.getModelAndView("studentReceipt");
 		for (StudentCourse studentCourse : studentCourseForm.getStudentCourses()) {
 			this.studentCourseDao.insert(studentCourse);
 		}
@@ -78,7 +78,7 @@ public class StudentAdmissionController extends BaseController {
 
 	@RequestMapping("saveStudentReceipts")
 	public ModelAndView saveStudentReceipts(@ModelAttribute StudentReceiptForm studentReceiptForm) {
-		ModelAndView result = new ModelAndView("redirect:show");
+		ModelAndView result = this.getModelAndView("redirect:show");
 		result.addObject("admission", "true");
 		this.studentReceiptDao.save(studentReceiptForm);
 		result.addObject("listStudentReceipt", studentReceiptForm);
@@ -92,8 +92,7 @@ public class StudentAdmissionController extends BaseController {
 	@RequestMapping("/addBlankRowStudentCourse")
 	public ModelAndView addBlankRowStudentCourse(@ModelAttribute StudentCourseForm studentCourseForm) {
 
-		ModelAndView result = new ModelAndView();
-		result.setViewName("studentCourse");
+		ModelAndView result = this.getModelAndView("studentCourse");
 		StudentCourse s = new StudentCourse();
 		result.addObject("uid", studentCourseForm.getStudentCourses().get(0).getUid());
 		studentCourseForm.getStudentCourses().add(s);
@@ -106,8 +105,7 @@ public class StudentAdmissionController extends BaseController {
 	@RequestMapping("/addBlankRowStudentReceipts")
 	public ModelAndView addBlankRowStudentReceipts(@ModelAttribute StudentReceiptForm studentReceiptForm) {
 
-		ModelAndView result = new ModelAndView();
-		result.setViewName("studentReceipt");
+		ModelAndView result = this.getModelAndView("studentReceipt");
 		StudentReceipt studentReceipt = new StudentReceipt();
 		studentReceiptForm.getStudentReceiptForm().add(studentReceipt);
 		result.addObject("studentReceiptForm", studentReceiptForm);
@@ -120,10 +118,8 @@ public class StudentAdmissionController extends BaseController {
 	public ModelAndView saveStudentsPersonalDetails(@ModelAttribute StudentEnquiry studentEnquiry) {
 
 		this.studentAdmissionDao.insert(studentEnquiry);
-		ModelAndView result = new ModelAndView();
-		result.setViewName("studentCourse");
+		ModelAndView result = this.getModelAndView("studentCourse");
 		result.addObject("uid", studentEnquiry.getTempID());
-
 		StudentCourseForm studentCourseForm = new StudentCourseForm();
 		LinkedList<StudentCourse> list = new LinkedList<StudentCourse>();
 		list.add(new StudentCourse());
@@ -135,9 +131,8 @@ public class StudentAdmissionController extends BaseController {
 
 	@RequestMapping("admissionForm")
 	public ModelAndView admissionForm(@ModelAttribute StudentEnquiry studentEnquiry) {
-		ModelAndView result = this.getModel();
+		ModelAndView result = this.getModelAndView("dceEnquiry");
 		result.addObject("admission", "true");
-		result.setViewName("dceEnquiry");
 		return result;
 	}
 

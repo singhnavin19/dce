@@ -53,10 +53,17 @@ public class StudentAttendanceController extends BaseController {
 	}
 
 	@RequestMapping("/addStudentForAttendance")
-	public ModelAndView studentAttendance() {
-		ModelAndView result = this.getModelAndView("attendance/addStudentForAttendance");
-		result.addObject("attendance", "true");
+	public ModelAndView studentAttendance(String uid) {
+		ModelAndView result = null;
+		if (uid != null) {
+			result = this.getModelAndView("attendance/addStudentForAttendance");
+			result.addObject("attendance", "true");
+		} else {
+			System.out.println(uid);
+			result = this.getModelAndView("attendance/addStudentForAttendance");
+		}
 		return result;
+
 	}
 
 	@RequestMapping("/saveStudentForAttendance")

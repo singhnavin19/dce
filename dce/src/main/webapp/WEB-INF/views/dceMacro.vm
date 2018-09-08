@@ -1,7 +1,27 @@
-<link rel="stylesheet" href="$!baeUrl/resources/css/dceStyle.css"/>
 #macro(studentFrom $formType,$formMessage)
+<style>
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+
+</style>
+
 <form action=$formType method="post">
-<table >
+
+<table style="margin-left: 13px;margin-top: 0px;line-height: 2;">
 				<br>
 				<th style="color:green">$!formMessage</th><br>
 						<tr>
@@ -47,23 +67,17 @@
 							<td>Course :</td>
 							<td><input type="text" name="course" value="$!studentenquiry.course" maxlength="45"></td>
 						</tr>
-						<tr>
-						
-						   <td><hr>For Office Use Only</td>
+						<tr style="border-bottom:1px solid black"><td colspan="100%"><hr/> </td></tr>
+						 <tr>  
+						   <td>For Office Use Only</td>
 						</tr>
 						<tr>
 							<td>Fees :</td>
 							<td><input type="text" name="fess" value="$!studentenquiry.fess" maxlength="25"></td>
 						</tr>
-						<tr>
-			                <td></br></br></td>
-			             </tr>   
-						#else
-						##parse("studentCourse.vm")
-						##parse("studentReceipt.vm")
 						#end
 						<tr>
-							<td><input align="center" type="submit" name="save" value="save"></td>
+							<td><input type="submit" name="save" value="save"></td>
 						</tr>
 
 						
