@@ -1,0 +1,4 @@
+2018-09-22 00:06:22,038 - ResourceManager : unable to find resource 'plain.vm' in any resource loader.
+2018-09-22 00:06:33,214 - ResourceManager : unable to find resource 'plain.vm' in any resource loader.
+2018-09-22 00:07:16,854 - ResourceManager : unable to find resource '/plain.vm' in any resource loader.
+2018-09-25 23:30:44,805 - ResourceManager : unable to find resource '<html><body bgcolor='green'> This is my Project </body></html>' in any resource loader.

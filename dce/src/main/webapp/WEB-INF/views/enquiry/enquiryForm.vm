@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="$baeUrl/resources/css/dceStyle.css"/>
+<h3 #if($!message) style="color:green" #else style="display:none" #end>$!message</h3>
+<form action="saveEnquiry" method="post">
+<fieldset style="marging:0px"><legend style="color:green;text-align: center;">Enquiry Form</legend>
+		<table style="margin-left: 13px;margin-top: 0px;line-height: 2;">
+					
+						<tr>
+							<td>Name : </td>
+							<td><input type="text" name="fname" value="$!studentenquiry.fname" placeholder="First Name" maxlength="25" required></td>
+							<td><input type="text" name="mname" value="$!studentenquiry.mname" placeholder="Middle Name" maxlength="25" required></td>
+							<td><input type="text" name="lname" value="$!studentenquiry.lname" placeholder="Last Name" maxlength="25" required ></td>
+						</tr>
+						<tr>
+							<td>Gender : </td>
+							<td><input type="radio" name="gender" #if ($!studentenquiry.gender=='M') checked #end value="M">Male
+								<input type="radio" name="gender" #if ($!studentenquiry.gender=='F') checked #end value="F">Female </td>
+						</tr>
+						<tr>
+							<td>Qualification : </td>
+							<td><input type="text" name="qualification" value="$!studentenquiry.qualification" maxlength="25" required></td>
+						</tr>
+						<tr>
+						#foreach( $professionType in $PROFESSION_TYPE.entrySet()) 
+										$professionType
+						#end				
+							
+							<td>Profession : </td>
+							<td><select name="Profession">
+							  <option value="0"></option>
+							  <option  #if ($!studentenquiry.profession==1) selected #end value="1">Student</option>
+							  <option  #if ($!studentenquiry.profession==2) selected #end value="2">Buisness</option>
+							  <option  #if ($!studentenquiry.profession==3) selected #end value="3">Service</option>
+							   <option #if ($!studentenquiry.profession==4) selected #end value="4">Other</option>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td>Address : </td>
+							<td colspan="3"><textarea style="margin: 0px; width: 347px; height: 118px;" name="address" value="$!studentenquiry.address" row="4" cols="25">$!studentenquiry.address </textarea>
+						</tr>
+						<tr>
+							<td>Mobile No : </td>
+							<td><input type="text" name="mobileNo" value="$!studentenquiry.mobileNo" maxlength="10"></td>
+						</tr>
+						<tr>
+							<td>E-mail ID :</td>
+							<td><input style="border: 1px solid black;border-radius: 4px ;padding: 10px;" type="email" name="emailID" value="$!studentenquiry.emailID" maxlength="35"></td>
+						</tr>
+						<tr>
+							<td>Course :</td>
+							<td><input type="text" name="course" value="$!studentenquiry.course" maxlength="45" required></td>
+						</tr>
+						<tr style="border-bottom:1px solid black"><td colspan="12"><hr/> </td></tr>
+						 <tr>  
+						   <td>For Office Use Only</td>
+						</tr>
+						<tr>
+							<td>Fees :</td>
+							<td><input type="text" name="fess" value="$!studentenquiry.fess" maxlength="25"></td>
+						</tr>
+						<tr>
+							<td><input type="submit" name="save" value="save"></td>
+						</tr>
+						
+</table>			    
+</form>

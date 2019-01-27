@@ -1,10 +1,8 @@
-
 *{
 		margin:0;
 		padding:0;
 		
 	}
-	
 /*header start here */
 .navbar {
     overflow: hidden;
@@ -85,20 +83,42 @@
 
 #DceAlternatetableID td, #DceAlternatetableID th {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 0px;
 }
 
 #DceAlternatetableID tr:nth-child(even){background-color: #f2f2f2;}
 
 #DceAlternatetableID th {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding: 5px;
     text-align: left;
-    background-color: #4CAF50;
+    background-color: #0b648f;
     color: white;
 }
 
 /*   table alternate end here */
+/* form start here */
 
+input[type="text"]{	
+	border: 1px solid black;
+	border-radius: 4px;
+	padding: 10px;
+	}
+select, textarea{
+	border: 1px solid black;
+	border-radius: 4px;
+	padding: 10px;
+}
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
 
 

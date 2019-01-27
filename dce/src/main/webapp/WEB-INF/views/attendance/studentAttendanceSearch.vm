@@ -15,7 +15,8 @@ body{
 }
 table{
 	width:100%;
-}
+	}
+	
 #input{
 	background-color:#0b648f;
 	color:white;
@@ -23,7 +24,7 @@ table{
 }
 td {
 	height: 50px;
-	padding: 10px 10px 10px 10px;
+	padding: 15px ;
 }
 </style>
 <form action="status" method="POST">
@@ -59,11 +60,11 @@ td {
 		   <td>$!studentAttendanceReport.course </td>
 		  </tr> 
 		  <tr>
-		     <td><button type="submit" $!disableCheck_in name="check_in_datetime" formaction="markAttendance.mvc">Check-in</td>
+		     <td style="cursor:pointer"><button type="submit" $!disableCheck_in name="check_in_datetime" formaction="markAttendance.mvc">Check-in</td>
 			 <td>$!dateUtils.dateToString($!studentAttendanceReport.check_in_datetime,"dd/MM/YYYY hh:mm a")</td>
 		  </tr>
 		  <tr>
-		     <td><button type="submit" $!disableCheck_out name="check_out_datetime"  formaction="markAttendance.mvc">Check-out</td>
+		     <td style="cursor:pointer"><button type="submit" $!disableCheck_out name="check_out_datetime"  formaction="markAttendance.mvc">Check-out</td>
 			 <td>$!dateUtils.dateToString($!studentAttendanceReport.check_out_datetime,"dd/MM/YYYY hh:mm a")</td>
 		  </tr>
 	  </table>

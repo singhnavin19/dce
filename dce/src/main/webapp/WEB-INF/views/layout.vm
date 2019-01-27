@@ -1,7 +1,7 @@
 <html>
 <head>
-<link rel="icon" href="resources/css/images/LOGO.png">
-<link rel="stylesheet" src="resources/css/dmnceStyle.css"/>
+<link rel="icon" href="$!baeUrl/resources/css/images/LOGO.png">
+<link rel="stylesheet" src="$!baeUrl/resources/css/dceStyle.css"/>
 <title>Dynamic Computer Education</title>  
 </head>
 <body>

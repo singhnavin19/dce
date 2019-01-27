@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="$!baeUrl/resources/css/dceStyle.css"/>
+#parse("dceMacro.vm")
+
+#if(!$!admission)
+   <h3 style="color:green">$!message</h3>
+   #studentFrom("saveEnquiry","Enquiry Form")
+#else
+   #studentFrom("saveStudentDetails","Admission Form")
+#end
+
+
+

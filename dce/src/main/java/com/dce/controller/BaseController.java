@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dce.util.ApplicationContextHelper;
 import com.dce.util.DateFormatter;
+import com.dce.util.DceConstant;
 
 public class BaseController {
 
@@ -16,6 +17,8 @@ public class BaseController {
 	private ServletContext servletContext;
 	@Autowired
 	private ApplicationContextHelper applicationContextHelper;
+	@Autowired
+	DceConstant dceConstant;
 
 	public final ModelAndView getModelAndView(String viewName) {
 
@@ -23,6 +26,7 @@ public class BaseController {
 		model.addObject("dateUtils", this.dateFormatter);
 		model.addObject("baeUrl", this.servletContext.getContextPath());
 		model.addObject("applicationContextHelper", this.applicationContextHelper);
+		model.addObject("dceConstant", this.dceConstant);
 		return model;
 
 	}

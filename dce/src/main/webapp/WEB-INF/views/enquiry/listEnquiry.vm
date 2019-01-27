@@ -1,0 +1,44 @@
+<br>
+<a style="display: block;margin-left: 88%;box-shadow: 0 0 3px 4px black;margin-right: 1%;color: green;" href="enquiryForm">New Enquiry </a>
+<h3 style="color:green">Enquiry Details</h3> 
+<br>
+<table id="DceAlternatetableID">
+	<tr>
+		<th width="8%">Temp ID</th>
+		<th width="14%">Name</th>
+		<th width="4%">Gender</th>
+		<th width="9%">Mobile No</th>
+		<th width="7%">Qualification</th>
+		<th width="7%">Profession</th>
+		<th width="14%">Address</th>
+		<th width="8%">Course</th>
+		<th width="5%">Fees</th>
+		<th width="13%">Enquiry Date</th>
+		<th width="11%">Remark</th>
+		<th width="13%"></th>
+		
+     </tr>
+	#foreach($enquiry in $listEnquiry)
+		<tr>
+			<td>$enquiry.tempID</td>
+			<td>$enquiry.fname $enquiry.mname $enquiry.lname</td>
+			<td>#if($enquiry.gender=="M") Male #else Female #end</td>
+			<td>$enquiry.mobileNo</td>
+			<td>$enquiry.qualification</td>
+			<td>$dceConstant.PROFESSION_TYPE.get($enquiry.profession)</td>
+			<td>$enquiry.address</td>
+			##<td>$enquiry.emailID</td>
+			<td>$enquiry.course</td>
+			<td>$enquiry.fess</td>
+			<td>$dateUtils.dateToString($enquiry.dateOfEnquiry,'dd-MMM-YYYY')</td>
+			<td>remark</td>
+			<td><a href="/dce/admission/searchStudentByTempID?tempID=$enquiry.tempID">Get Admission</a></td>
+		</tr>
+	#end
+</table>
+<br><br>	
+	
+	
+	
+	
+	

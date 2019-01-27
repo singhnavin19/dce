@@ -1,0 +1,134 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="$baeUrl/resources/css/dceStyle.css"/>
+
+<form action="saveStudentDetails" method="post">
+		<br><br>
+		<fieldset><legend align="center"><b>Baisc Information</b></legend>
+			<br><h3 style="color:green">$!message</h3>
+			<table  style="margin-left: 13px;margin-top: 0px;line-height: 2;">
+						#if($!formMessage)
+							<th style="color:green">$!formMessage</th><br>
+						#end	
+							#if($admissionForm.UID != $null || $!admissionForm.tempID != $null)
+								<tr>
+									#if($admissionForm.UID != $null)
+										<td>UID : </td>
+										<td><input type="text"  readonly name="UID" value="$!admissionForm.UID"></td>
+									#end
+									#if($!admissionForm.tempID != $null)
+										<td>Temp ID : </td>
+										<td><input type="text"  readonly name="tempID" value="$!admissionForm.tempID"></td>
+									#end
+								<tr>
+							#end
+									<td>Name : </td>
+									<td><input type="text" name="fname" value="$!admissionForm.fname" placeholder="First Name" maxlength="25"></td>
+									<td><input type="text" name="mname" value="$!admissionForm.mname" placeholder="Middle Name" maxlength="25"></td>
+									<td><input type="text" name="lname" value="$!admissionForm.lname" placeholder="Last Name" maxlength="25"></td>
+								</tr>
+								<tr>
+									<td>Gender : </td>
+									<td><input type="radio" name="gender" #if ($!admissionForm.gender=='M') checked #end value="M">Male
+										<input type="radio" name="gender" #if ($!admissionForm.gender=='F') checked #end value="F">Female </td>
+								</tr>
+								<tr>
+									<td>Qualification : </td>
+									<td><input type="text" name="qualification" value="$!admissionForm.qualification" maxlength="25"></td>
+								</tr><br>
+								<tr>
+									<td>Profession : </td>
+									<td><select name="Profession">
+									  <option value="0"></option>
+									  <option  #if ($!admissionForm.profession==1) selected #end value="1">Student</option>
+									  <option  #if ($!admissionForm.profession==2) selected #end value="2">Buisness</option>
+									  <option  #if ($!admissionForm.profession==3) selected #end value="3">Service</option>
+									   <option #if ($!admissionForm.profession==4) selected #end value="4">Other</option>
+									</select>
+									</td>
+								</tr>
+								<tr></tr>
+								<tr>
+									<td>Address : </td>
+									<td colspan="3"><textarea style="margin: 0px; width: 347px; height: 118px;" name="address" value="$!admissionForm.address" row="4" cols="25">$!admissionForm.address</textarea>
+								</tr><br>
+								<tr>
+									<td>Mobile No : </td>
+									<td><input type="text" name="mobileNo" value="$!admissionForm.mobileNo" maxlength="10"></td>
+								</tr><br>
+								<tr>
+									<td>E-mail ID :</td>
+									<td><input type="email" name="emailID" value="$!admissionForm.emailID" maxlength="35"></td>
+								</tr>
+				</table>
+		 </fieldset><br><br>	
+		 
+		<fieldset>
+				<legend align="center"><b>Course Details</b></legend><br>			
+				<table border="1" width="100%">
+						<thead>
+								<th>SrNo</th>
+								<th>Course Name</th>
+								<th>Fees</th>
+								<th>batch_time</th>
+								<th>Course Duration</th>
+						</thead>
+						#set($srno = 1)
+						#set($maxCourseCount=$admissionForm.getCourseDetails().size())
+						#set($courseIndex = 0)
+						#foreach($courseDetails in $admissionForm.getCourseDetails())
+						<tbody>
+						   <tr>
+							   <td><input type="text" readonly name="" value="$!srno"></td>
+							   <td><input type="text" name="courseDetails[$courseIndex].courseName" value="$!courseDetails.courseName"></td>
+							   <td><input type="text" name="courseDetails[$courseIndex].feePerCcourse" value="$!courseDetails.feePerCcourse"></td>
+							   <td><input type="text" name="courseDetails[$courseIndex].batchTime" value="$!courseDetails.batchTime"></td>
+							   <td><input type="text" name="courseDetails[$courseIndex].duration" value="$!courseDetails.duration"></td>
+						   	   <td style="display:none;"><input type="hidden" name="courseDetails[$courseIndex].uid" value="$!uid"></td>		   	   
+						   	   #if($maxCourseCount <=$srno)<td style="display:inline"><a href="#"><button type="submit" formaction="addBlankRowStudentCourse.mvc"><i style="font-size:24px;color:green;" class="fa">&#xf055;</i></a></td>
+						   	   ##else<td><a href="#"><button type="submit" formaction="addBlankRowStudentCourse.mvc"><i style="font-size:24px" class="fa">&#xf056;</i></a></td>
+						   	   #end
+							</tr>
+						</tbody>
+						#set($srno = $srno+1)
+						#set ($courseIndex=$courseIndex+1)
+						#end
+				</table>
+		</fieldset><br><br>
+		
+		<fieldset><br>
+		   	<legend align="center"><b>Fee Details</b></legend>		
+			<table border="1" width="100%">
+					<thead>
+							<th>Installment No</th>
+							<th>Due_date</th>
+							<th>Paid_date</th>
+							<th>Amount</th>
+							<th>Receipt_No</th>
+					</thead>
+					#set($srno = 1)
+					#set($courseIndex = 0)
+					#set($maxCourseCount=$admissionForm.getFeeDetails.size())
+					#foreach($StudentReceipt in $admissionForm.getFeeDetails())
+					<tbody>
+						   <tr>
+							   <td><input type="readonly" name="feeDetails[$courseIndex].installment" value="$srno"></td>
+							   <td><input type="date" name="feeDetails[$courseIndex].dueDate" value="$!dateUtils.dateToString($!StudentReceipt.dueDate)"></td>
+							   <td><input type="date" name="feeDetails[$courseIndex].paidDate" value="$!dateUtils.dateToString($!StudentReceipt.paidDate)"></td>
+							   <td><input type="text" name="feeDetails[$courseIndex].amount" value="$!StudentReceipt.amount"></td>
+							   <td><input type="text" name="feeDetails[$courseIndex].receiptNo" value="$!StudentReceipt.receiptNo"></td>
+						   	   <td style="display:none"><input type="hidden" name="feeDetails[$courseIndex].uid" value="$!uid"></td>
+						   	   #if($maxCourseCount <=$srno)<td><a href="#"><button type="submit" formaction="addBlankRowStudentReceipts"><i style="font-size:24px" class="fa">&#xf055;</i></a></td>
+						   	   ##else<td><a href="#"><button type="submit" formaction="addBlankRowStudentCourse.mvc"><i style="font-size:24px" class="fa">&#xf056;</i></a></td>
+						   	   #end
+						   	  
+							</tr>
+						#set($srno = $srno+1)
+						#set ($courseIndex=$courseIndex+1)
+				      #end
+				   </fieldset><br>   
+						<tr><td style="border:none;align:center"><input type="submit" value="submit"></td></tr>
+					</tbody>
+			</table>
+						
+</form>
+						

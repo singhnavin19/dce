@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="$baeUrl/resources/css/dceStyle.css"/>
+<form method="post">
+<table id="DceAlternatetableID">
+	<tr>
+	    .<td>ID</td>
+	    <td><input type="text" name="UID"></td>
+	    <td><button style="display:none" type="submit" formaction="$baeUrl/infromation/getDetails"></td>
+	</tr>
+</table >
+$admissionForm
+#if($admissionForm != $nul)
+
+ ##parse("admissionForm/admissionForm.vm")
+
+#end
+
