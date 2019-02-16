@@ -50,12 +50,13 @@
 		    <artifactId>spring-security-core</artifactId>
 		    <version>3.1.1.RELEASE</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-web</artifactId>
 		    <version>3.1.1.RELEASE</version>
 		</dependency>
+		<!-- spring security -->
+		
 		<!-- joda-time -->
 		<dependency>
 		    <groupId>joda-time</groupId>
@@ -185,6 +186,7 @@
 			<scope>test</scope>
 		</dependency>        
 	</dependencies>
+	
     <build>
         <plugins>
             <plugin>
