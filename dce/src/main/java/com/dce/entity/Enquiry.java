@@ -6,33 +6,33 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class Enquiry {
 
-	String fname, mname, lname, qualification, profession, address, mobileNo, emailID, course, fess;
+	String firstName, middleName, lastName, qualification, profession, address, mobileNo, emailId, course, fess;
 	@DateTimeFormat(pattern = "YYYY-MM-DD")
 	Date dateOfEnquiry;
 	String gender, tempID;
 
-	public String getFname() {
-		return this.fname;
+	public String getFirstName() {
+		return this.firstName;
 	}
 
-	public void setFname(String fname) {
-		this.fname = fname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getMname() {
-		return this.mname;
+	public String getMiddleName() {
+		return this.middleName;
 	}
 
-	public void setMname(String mname) {
-		this.mname = mname;
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
 	}
 
-	public String getLname() {
-		return this.lname;
+	public String getLastName() {
+		return this.lastName;
 	}
 
-	public void setLname(String lname) {
-		this.lname = lname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getQualification() {
@@ -67,16 +67,16 @@ public class Enquiry {
 		this.mobileNo = mobileNo;
 	}
 
-	public String getEmailID() {
-		return this.emailID;
-	}
-
-	public void setEmailID(String emailID) {
-		this.emailID = emailID;
-	}
-
 	public String getCourse() {
 		return this.course;
+	}
+
+	public String getEmailId() {
+		return this.emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
 	public void setCourse(String course) {
@@ -113,14 +113,6 @@ public class Enquiry {
 
 	public void setTempID(String tempID) {
 		this.tempID = tempID;
-	}
-
-	@Override
-	public String toString() {
-		return "StudentEnquiry [fname=" + this.fname + ", mname=" + this.mname + ", lname=" + this.lname
-				+ ", qualification=" + this.qualification + ", profession=" + this.profession + ", address="
-				+ this.address + ", mobileNo=" + this.mobileNo + ", emailID=" + this.emailID + ", course=" + this.course
-				+ ", fess=" + this.fess + ", dateOfEnquiry=" + this.dateOfEnquiry + ", gender=" + this.gender + "]";
 	}
 
 }

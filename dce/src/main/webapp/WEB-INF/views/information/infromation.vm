@@ -2,15 +2,15 @@
 <form method="post">
 <table id="DceAlternatetableID">
 	<tr>
-	    .<td>ID</td>
-	    <td><input type="text" name="UID"></td>
+	    <td>ID</td>
+	    <td><input type="text" name="uid"></td>
 	    <td><button style="display:none" type="submit" formaction="$baeUrl/infromation/getDetails"></td>
 	</tr>
 </table >
-$admissionForm
 #if($admissionForm != $nul)
-
- ##parse("admissionForm/admissionForm.vm")
+	
+	#parse("admission/admissionFrom.vm")
 
 #end
+
 

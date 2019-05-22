@@ -22,9 +22,9 @@
 								<tr>
 							#end
 									<td>Name : </td>
-									<td><input type="text" name="fname" value="$!admissionForm.fname" placeholder="First Name" maxlength="25"></td>
-									<td><input type="text" name="mname" value="$!admissionForm.mname" placeholder="Middle Name" maxlength="25"></td>
-									<td><input type="text" name="lname" value="$!admissionForm.lname" placeholder="Last Name" maxlength="25"></td>
+									<td><input type="text" name="fname" value="$!admissionForm.firstName" placeholder="First Name" maxlength="25"></td>
+									<td><input type="text" name="mname" value="$!admissionForm.middleName" placeholder="Middle Name" maxlength="25"></td>
+									<td><input type="text" name="lname" value="$!admissionForm.lastName" placeholder="Last Name" maxlength="25"></td>
 								</tr>
 								<tr>
 									<td>Gender : </td>
@@ -57,7 +57,7 @@
 								</tr><br>
 								<tr>
 									<td>E-mail ID :</td>
-									<td><input type="email" name="emailID" value="$!admissionForm.emailID" maxlength="35"></td>
+									<td><input type="email" name="emailID" value="$!admissionForm.emailId" maxlength="35"></td>
 								</tr>
 				</table>
 		 </fieldset><br><br>	
@@ -84,7 +84,7 @@
 							   <td><input type="text" name="courseDetails[$courseIndex].batchTime" value="$!courseDetails.batchTime"></td>
 							   <td><input type="text" name="courseDetails[$courseIndex].duration" value="$!courseDetails.duration"></td>
 						   	   <td style="display:none;"><input type="hidden" name="courseDetails[$courseIndex].uid" value="$!uid"></td>		   	   
-						   	   #if($maxCourseCount <=$srno)<td style="display:inline"><a href="#"><button type="submit" formaction="addBlankRowStudentCourse.mvc"><i style="font-size:24px;color:green;" class="fa">&#xf055;</i></a></td>
+						   	   #if($maxCourseCount <=$srno)<td style="display:inline"><a href="#"><button type="submit" formaction="$baeUrl/admission/addRowInCourseTable.mvc"><i style="font-size:24px;color:green;" class="fa">&#xf055;</i></a></td>
 						   	   ##else<td><a href="#"><button type="submit" formaction="addBlankRowStudentCourse.mvc"><i style="font-size:24px" class="fa">&#xf056;</i></a></td>
 						   	   #end
 							</tr>
@@ -105,29 +105,33 @@
 							<th>Amount</th>
 							<th>Receipt_No</th>
 					</thead>
-					#set($srno = 1)
-					#set($courseIndex = 0)
-					#set($maxCourseCount=$admissionForm.getFeeDetails.size())
-					#foreach($StudentReceipt in $admissionForm.getFeeDetails())
+					#set($feeSrno = 1)
+					#set($feeeIndex = 0)
+					#set($maxFeeCount=$!admissionForm.getFeeDetails().size())
+					$maxFeeCount<br>
+					$feeSrno
+					#foreach($feeDetail in $admissionForm.getFeeDetails())
 					<tbody>
 						   <tr>
-							   <td><input type="readonly" name="feeDetails[$courseIndex].installment" value="$srno"></td>
-							   <td><input type="date" name="feeDetails[$courseIndex].dueDate" value="$!dateUtils.dateToString($!StudentReceipt.dueDate)"></td>
-							   <td><input type="date" name="feeDetails[$courseIndex].paidDate" value="$!dateUtils.dateToString($!StudentReceipt.paidDate)"></td>
-							   <td><input type="text" name="feeDetails[$courseIndex].amount" value="$!StudentReceipt.amount"></td>
-							   <td><input type="text" name="feeDetails[$courseIndex].receiptNo" value="$!StudentReceipt.receiptNo"></td>
-						   	   <td style="display:none"><input type="hidden" name="feeDetails[$courseIndex].uid" value="$!uid"></td>
-						   	   #if($maxCourseCount <=$srno)<td><a href="#"><button type="submit" formaction="addBlankRowStudentReceipts"><i style="font-size:24px" class="fa">&#xf055;</i></a></td>
-						   	   ##else<td><a href="#"><button type="submit" formaction="addBlankRowStudentCourse.mvc"><i style="font-size:24px" class="fa">&#xf056;</i></a></td>
-						   	   #end
+							   <td><input type="readonly" name="$!feeDetails[$feeeIndex].installment" value="$feeSrno"></td>
+							   <td><input type="date" name="$!feeDetails[$feeeIndex].dueDate" value="$!dateUtils.dateToString($!feeDetail.dueDate)"></td>
+							   <td><input type="date" name="$!feeDetails[$feeeIndex].paidDate" value="$!dateUtils.dateToString($$feeDetail.paidDate)"></td>
+							   <td><input type="text" name="$!feeDetails[$feeeIndex].amount" value="$!feeDetail.amount"></td>
+							   <td><input type="text" name="$!feeDetails[$feeeIndex].receiptNo" value="$!feeDetail.receiptNo"></td>
+						   	   <td style="display:none"><input type="hidden" name="feeDetails[$!feeeIndex].uid" value="$!uid"></td>
+						   #if($maxFeeCount <= $!feeSrno)
+						   	   	<td><a href="#"><button type="submit" formaction="$baeUrl/admission/addRowInFeeDetailsTable.mvc"><i style="font-size:24px" class="fa">&#xf055;</i></a></td>
+						   ##else<td><a href="#"><button type="submit" formaction="addBlankRowStudentCourse.mvc"><i style="font-size:24px" class="fa">&#xf056;</i></a></td>
+						   #end
 						   	  
 							</tr>
-						#set($srno = $srno+1)
-						#set ($courseIndex=$courseIndex+1)
-				      #end
-				   </fieldset><br>   
-						<tr><td style="border:none;align:center"><input type="submit" value="submit"></td></tr>
-					</tbody>
+						#set($feeSrno = $feeSrno+1)
+						#set ($feeeIndex=$feeeIndex+1)
+				       #end
+			</fieldset><br>   
+						 <tr><td style="border:none;align:center"><input type="submit" value="submit"></td></tr>
+			</tbody>
+			
 			</table>
 						
 </form>

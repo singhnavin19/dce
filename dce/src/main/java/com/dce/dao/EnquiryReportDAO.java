@@ -31,15 +31,15 @@ public class EnquiryReportDAO {
 			@Override
 			public Admission mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Admission admission = new Admission();
-				admission.setFname(rs.getString(1));
-				admission.setMname(rs.getString(2));
-				admission.setLname(rs.getString(3));
+				admission.setFirstName(rs.getString(1));
+				admission.setMiddleName(rs.getString(2));
+				admission.setLastName(rs.getString(3));
 				admission.setGender(rs.getString(4));
 				admission.setQualification(rs.getString(5));
 				admission.setProfession(rs.getString(6));
 				admission.setAddress(rs.getString(7));
 				admission.setMobileNo(rs.getString(8));
-				admission.setEmailID(rs.getString(9));
+				admission.setEmailId(rs.getString(9));
 				admission.setCourse(rs.getString(10));
 				admission.setFess(rs.getString(11));
 				admission.setDateOfEnquiry(rs.getDate(12));

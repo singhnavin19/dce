@@ -5,22 +5,24 @@
 <body>
 <img style="width:100%" src="$!baeUrl/resources/css/images/DCE.jpg">
 <div class="navbar">
-  <a #if($!home)  class="active" #end href="#">Home</a>
-  <a #if($!enquiry) class="active" #end href="/dce/enquiry/show">Enquiry</a>
-  <a #if($!admission) class="active" #end  href="/dce/admission/show">Admission</a>
-  <a #if($!information) class="active" #end  href="/dce/infromation/show">Information</a>
-  <a #if($!attendance) class="active" #end  href="/dce/attendance/show">Attendance</a>
-  
-  <div class="dropdown">
-    <button class="dropbtn" #if($!Reports) style="background-color:#0b648f"  #end>Reports 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="/dce/attendance/studentAttendanceReport">Attendance Report</a>
-      <a href="#">Addmission Report</a>
-      <a href="/dce/attendance/addStudentForAttendance">Add Student For Attendance</a>
-    </div>
-  </div> 
+		  <a #if($!home)  class="active" #end href="#">Home</a>
+		  <a #if($!enquiry) class="active" #end href="/dce/enquiry/show">Enquiry</a>
+		  <a #if($!admission) class="active" #end  href="/dce/admission/show">Admission</a>
+		  <a #if($!information) class="active" #end  href="/dce/infromation/show">Information</a>
+		  <a #if($!attendance) class="active" #end  href="/dce/attendance/show">Attendance</a>
+		  
+		  <div class="dropdown">
+			    <button class="dropbtn" #if($!Reports) style="background-color:#0b648f"  #end>Reports 
+			      <i class="fa fa-caret-down"></i>
+			    </button>
+			    <div class="dropdown-content">
+				      <a href="/dce/attendance/studentAttendanceReport">Attendance Report</a>
+				      <a href="#">Addmission Report</a>
+				      <a href="/dce/attendance/addStudentForAttendance">Add Student For Attendance</a>
+			    </div>
+		  </div> 
+		 <a style="align:right"href="/dce/j_spring_security_logout">Log-Out</a>
+		   
 </div>
 </body>
 </html>

@@ -54,7 +54,7 @@ public class CourseDAO {
 
 		StringBuilder query = new StringBuilder();
 		query.append("SELECT * ");
-		query.append("FROM tcourse_details where uid =:uid ");
+		query.append("FROM tcourse_details where uid like :uid ");
 
 		return this.namedjdbctemplate.query(query.toString(), param, new BeanPropertyRowMapper<Course>(Course.class));
 
