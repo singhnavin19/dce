@@ -6,10 +6,20 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class Enquiry {
 
-	String firstName, middleName, lastName, qualification, profession, address, mobileNo, emailId, course, fess;
+	String firstName;
+	String middleName;
+	String lastName;
+	String qualification;
+	String profession;
+	String address;
+	String mobileNo;
+	String emailId;
+	String course;
+	String fess;
 	@DateTimeFormat(pattern = "YYYY-MM-DD")
 	Date dateOfEnquiry;
-	String gender, tempID;
+	String gender;
+	String tempID;
 
 	public String getFirstName() {
 		return this.firstName;
@@ -33,6 +43,11 @@ public class Enquiry {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getFullName() {
+
+		return this.firstName + " " + this.middleName + " " + this.lastName;
 	}
 
 	public String getQualification() {

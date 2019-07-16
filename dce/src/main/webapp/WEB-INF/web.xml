@@ -33,13 +33,22 @@
   </servlet-mapping>
   
  <filter>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+ </filter>
  
-    <filter-mapping>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping> 
+ <filter-mapping>
+     <filter-name>springSecurityFilterChain</filter-name>
+     <url-pattern>/*</url-pattern>
+ </filter-mapping> 
+ <filter>
+ 	<filter-name>DceCacheFilter</filter-name>
+ 	<filter-class>com.dce.util.DceCacheFilter</filter-class>
+ </filter>
+ <filter-mapping>
+     <filter-name>DceCacheFilter</filter-name>
+     <url-pattern>/*</url-pattern>
+ </filter-mapping>
+ 
 </web-app>
 

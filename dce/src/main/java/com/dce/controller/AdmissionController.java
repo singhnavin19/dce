@@ -18,8 +18,8 @@ import com.dce.util.DateFormatter;
 public class AdmissionController extends BaseController {
 
 	private static final Boolean TRUE = true;
-	private static final String ADMISSION_FORM = "admissionForm";
-	private static final String ADMISSION_ADMISSION_FROM = "admission/admissionFrom";
+	private static final String ADMISSION = "admissionForm";
+	private static final String ADMISSION_FROM_VIEW = "admission/admissionFrom";
 	@Autowired
 	EnquiryService enquiryService;
 	@Autowired
@@ -30,8 +30,7 @@ public class AdmissionController extends BaseController {
 	@RequestMapping("/show")
 	public ModelAndView show() {
 
-		ModelAndView result = this.getModel();
-		result.setViewName("studentSearch");
+		ModelAndView result = this.getModelAndView("studentSearch");
 		result.addObject("admission", TRUE);
 		return result;
 	}
@@ -39,10 +38,10 @@ public class AdmissionController extends BaseController {
 	@RequestMapping("/admissionForm")
 	public ModelAndView admissionForm(@ModelAttribute Admission admission) {
 
+		ModelAndView result = this.getModelAndView(ADMISSION_FROM_VIEW);
 		this.admissionService.addRowInCourseAndFeeTable(admission);
-		ModelAndView result = this.getModelAndView(ADMISSION_ADMISSION_FROM);
 		result.addObject("admission", TRUE);
-		result.addObject(ADMISSION_FORM, admission);
+		result.addObject(ADMISSION, admission);
 
 		return result;
 	}
@@ -50,7 +49,7 @@ public class AdmissionController extends BaseController {
 	@RequestMapping("saveStudentDetails")
 	public ModelAndView saveStudentDetails(@ModelAttribute Admission admission) {
 
-		ModelAndView result = this.getModelAndView(ADMISSION_ADMISSION_FROM);
+		ModelAndView result = this.getModelAndView(ADMISSION_FROM_VIEW);
 		this.admissionService.save(admission);
 		String message = "Admission Process Completed Successfully : Your UID is:- " + admission.getUID();
 		result.addObject("message", message);
@@ -63,8 +62,8 @@ public class AdmissionController extends BaseController {
 	public ModelAndView addRowInCourseTable(@ModelAttribute Admission admissionForm) {
 
 		this.admissionService.addRowInCourseTable(admissionForm);
-		ModelAndView result = this.getModelAndView(ADMISSION_ADMISSION_FROM);
-		result.addObject(ADMISSION_FORM, admissionForm);
+		ModelAndView result = this.getModelAndView(ADMISSION_FROM_VIEW);
+		result.addObject(ADMISSION, admissionForm);
 		result.addObject("admission", TRUE);
 		return result;
 
@@ -74,8 +73,8 @@ public class AdmissionController extends BaseController {
 	public ModelAndView addRowInFeeDetailsTable(@ModelAttribute Admission admissionForm) {
 
 		this.admissionService.addRowInFeeDetailsTable(admissionForm);
-		ModelAndView result = this.getModelAndView(ADMISSION_ADMISSION_FROM);
-		result.addObject(ADMISSION_FORM, admissionForm);
+		ModelAndView result = this.getModelAndView(ADMISSION_FROM_VIEW);
+		result.addObject(ADMISSION, admissionForm);
 		result.addObject("admission", TRUE);
 		return result;
 
@@ -90,14 +89,15 @@ public class AdmissionController extends BaseController {
 		if (admission.getFirstName() != null) {
 			result.setViewName("studentSearch");
 			result.addObject("listStudents", this.enquiryService.getStudentdetails(admission));
-		} else {
-			admission = this.enquiryService.getStudentdetails(admission).get(0);
-			this.admissionService.addRowInCourseAndFeeTable(admission);
-			result.addObject(ADMISSION_FORM, admission);
-			result.setViewName(ADMISSION_ADMISSION_FROM);
-
+			return result;
 		}
+		admission = this.enquiryService.getStudentdetails(admission).get(0);
+		this.admissionService.addRowInCourseAndFeeTable(admission);
+		result.addObject(ADMISSION, admission);
+		result.setViewName(ADMISSION_FROM_VIEW);
+
 		return result;
+
 	}
 
 }

@@ -15,17 +15,14 @@ public class DceAuthenticationProvider implements AuthenticationProvider {
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+
 		String userName = authentication.getName().trim();
 		String password = authentication.getCredentials().toString().trim();
-
 		SimpleGrantedAuthority grantedAuths = new SimpleGrantedAuthority("ROLE_ADMIN");
 		Collection<SimpleGrantedAuthority> auth = new ArrayList<>();
-
 		auth.add(grantedAuths);
-
 		Authentication auth1 = new UsernamePasswordAuthenticationToken(userName, password, auth);
 		return auth1;
-
 	}
 
 	@Override

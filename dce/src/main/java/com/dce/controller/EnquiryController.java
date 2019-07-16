@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dce.dao.EnquiryReportDAO;
 import com.dce.entity.Enquiry;
 import com.dce.service.EnquiryService;
+import com.dce.service.UserService;
+import com.dce.util.DceConstant;
 
 @Controller
 @RequestMapping(value = "/enquiry")
@@ -20,10 +22,14 @@ public class EnquiryController extends BaseController {
 	EnquiryService studentEnquiryService;
 	@Autowired
 	EnquiryReportDAO enquiryReportDAO;
+	@Autowired
+	UserService userService;
+
+	public boolean TRUE = true;
 
 	@ModelAttribute
-	public ModelAndView addingCommonObject(ModelAndView result) {
-		result.addObject("enquiry", "true");
+	public ModelAndView enableEnquiryTabForAllRequest(ModelAndView result) {
+		result.addObject(DceConstant.ENQUIRY_TAB, this.TRUE);
 		return result;
 	}
 
@@ -32,7 +38,8 @@ public class EnquiryController extends BaseController {
 
 		ModelAndView result = this.getModelAndView("enquiry/listEnquiry");
 		result.addObject("listEnquiry", this.enquiryReportDAO.fetch());
-		result.addObject("enquiry", "true");
+		System.out.println(this.userService.getCurrentUser());
+
 		return result;
 
 	}
@@ -40,7 +47,7 @@ public class EnquiryController extends BaseController {
 	@RequestMapping("enquiryForm")
 	public ModelAndView enquiryForm() {
 		ModelAndView result = this.getModelAndView("enquiry/enquiryForm");
-		result.addObject("enquiry", "true");
+		result.addObject(DceConstant.ENQUIRY_TAB, this.TRUE);
 		return result;
 	}
 
@@ -52,7 +59,7 @@ public class EnquiryController extends BaseController {
 		result.addObject("message",
 				"Enquiry details saved successfully,Kindly note the Temporary ID for future refrence:- <mark style='color:green'>"
 						+ tempID + "</mark>");
-		result.addObject("enquiry", "true");
+		result.addObject(DceConstant.ENQUIRY_TAB, this.TRUE);
 		return result;
 
 	}

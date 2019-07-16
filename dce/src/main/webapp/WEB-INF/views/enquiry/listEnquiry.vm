@@ -16,12 +16,11 @@
 		<th width="13%">Enquiry Date</th>
 		<th width="11%">Remark</th>
 		<th width="13%"></th>
-		
      </tr>
 	#foreach($enquiry in $listEnquiry)
 		<tr>
 			<td>$enquiry.tempID</td>
-			<td>$enquiry.fname $enquiry.mname $enquiry.lname</td>
+			<td>$enquiry.fullName</td>
 			<td>#if($enquiry.gender=="M") Male #else Female #end</td>
 			<td>$enquiry.mobileNo</td>
 			<td>$enquiry.qualification</td>

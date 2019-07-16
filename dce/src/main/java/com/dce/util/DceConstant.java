@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class DceConstant {
 
+	public static final String ENQUIRY_TAB = "enquiry";
+
 	public static Map<String, String> PROFESSION_TYPE = new HashMap<String, String>();
 	static {
 		PROFESSION_TYPE.put("1", "Student");

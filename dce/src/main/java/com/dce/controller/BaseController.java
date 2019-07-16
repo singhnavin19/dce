@@ -26,7 +26,6 @@ public class BaseController {
 		model.addObject("dateUtils", this.dateFormatter);
 		model.addObject("baeUrl", this.servletContext.getContextPath());
 		model.addObject("applicationContextHelper", this.applicationContextHelper);
-		model.addObject("dceConstant", this.dceConstant);
 		return model;
 
 	}
