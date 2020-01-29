@@ -30,9 +30,8 @@ public class DateFormatter {
 			SimpleDateFormat sdf = new SimpleDateFormat(format);
 			String dateString = sdf.format(date);
 			return dateString;
-		} else {
-			return null;
 		}
+		return null;
 
 	}
 }
